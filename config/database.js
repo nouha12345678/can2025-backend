@@ -1,4 +1,7 @@
+require("dotenv").config();
 const { Sequelize } = require("sequelize");
+
+const useSSL = process.env.DB_SSL === "true";
 
 const sequelize = new Sequelize(
   process.env.DB_NAME,
@@ -16,11 +19,12 @@ const sequelize = new Sequelize(
       idle: 10000
     },
     dialectOptions: {
-      ssl: {
-        require: true,
-        rejectUnauthorized: false
-      }
-    }
+  ssl: {
+    require: true,
+    rejectUnauthorized: false
+  }
+}
+
   }
 );
 

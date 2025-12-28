@@ -1,11 +1,18 @@
 const express = require("express");
-const app = express();
-const PORT = 3000;
+const bodyParser = require("body-parser");
+const userRoutes = require("./routes/user"); // chemin vers ton fichier user.js
 
+const app = express();
+app.use(bodyParser.json());
+
+// Route de test
 app.get("/", (req, res) => {
   res.send("✅ Test route fonctionne !");
 });
 
-app.listen(PORT, () => {
-  console.log("Server test running on port 3000");
+// Routes utilisateur
+app.use("/api/users", userRoutes);
+
+app.listen(3002, () => {
+  console.log("Server test running on port 3002");
 });
